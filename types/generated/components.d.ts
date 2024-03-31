@@ -23,6 +23,24 @@ export interface SharedQuote extends Schema.Component {
   };
 }
 
+export interface SharedRichTextCke extends Schema.Component {
+  collectionName: 'components_shared_rich_text_ckes';
+  info: {
+    displayName: 'Rich Text CKE';
+    icon: 'apps';
+  };
+  attributes: {
+    RichTextCKE: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'standard';
+        }
+      >;
+  };
+}
+
 export interface SharedRichText extends Schema.Component {
   collectionName: 'components_shared_rich_texts';
   info: {
@@ -67,6 +85,7 @@ declare module '@strapi/types' {
     export interface Components {
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
+      'shared.rich-text-cke': SharedRichTextCke;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
